@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohamed Amer Shalan — Business Analyst &amp; Aspiring Product Owner</title>
+<meta name="description" content="Business Analyst and aspiring Product Owner specializing in requirements engineering, process modeling, and digital transformation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root{
+  --ink:#0E1116;
+  --panel:#151920;
+  --panel-2:#1B2029;
+  --paper:#ECE8DF;
+  --paper-dim:#B9B6AD;
+  --brass:#C6A15B;
+  --brass-dim:#8A7241;
+  --slate:#7C8494;
+  --hairline:rgba(236,232,223,0.12);
+  --hairline-strong:rgba(236,232,223,0.22);
+
+  --display:'Fraunces', serif;
+  --mono:'IBM Plex Mono', monospace;
+  --body:'Public Sans', sans-serif;
+
+  --wrap: 1180px;
+  --gutter: clamp(24px, 5vw, 72px);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--body);
+  font-weight:300;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--brass);color:var(--ink);}
+
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+
+:focus-visible{
+  outline:2px solid var(--brass);
+  outline-offset:4px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+}
+
+/* ============================================================
+   LAYOUT PRIMITIVES
+   ============================================================ */
+.wrap{
+  max-width:var(--wrap);
+  margin:0 auto;
+  padding:0 var(--gutter);
+  position:relative;
+}
+.rail{
+  display:grid;
+  grid-template-columns: 96px 1fr;
+  gap: var(--gutter);
+}
+@media (max-width:860px){
+  .rail{grid-template-columns:1fr;}
+}
+
+.eyebrow{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--brass);
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.eyebrow::before{
+  content:'';
+  width:22px;height:1px;
+  background:var(--brass-dim);
+  display:inline-block;
+}
+
+.section{
+  padding: clamp(72px, 12vw, 160px) 0;
+  border-top:1px solid var(--hairline);
+  position:relative;
+}
+
+.index-num{
+  font-family:var(--mono);
+  font-size:13px;
+  color:var(--slate);
+  writing-mode: vertical-rl;
+  text-orientation:mixed;
+  letter-spacing:0.12em;
+}
+@media (max-width:860px){
+  .index-num{writing-mode:horizontal-tb;margin-bottom:24px;}
+}
+
+h1,h2,h3{font-family:var(--display); font-weight:500; letter-spacing:-0.01em;}
+
+.h-section{
+  font-size:clamp(28px, 4vw, 44px);
+  font-weight:400;
+  color:var(--paper);
+  margin-bottom:28px;
+  max-width:16ch;
+}
+.lede{
+  font-size:clamp(16px,1.6vw,19px);
+  color:var(--paper-dim);
+  max-width:60ch;
+  font-weight:300;
+}
+
+.tag{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  padding:5px 10px;
+  border:1px solid var(--hairline-strong);
+  border-radius:2px;
+  color:var(--paper-dim);
+  display:inline-block;
+}
+.tag.brass{border-color:var(--brass-dim); color:var(--brass);}
+
+.btn{
+  font-family:var(--mono);
+  font-size:13px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  padding:16px 28px;
+  border:1px solid var(--hairline-strong);
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  transition: border-color .25s ease, transform .25s ease, background .25s ease;
+}
+.btn:hover{border-color:var(--brass); transform:translateY(-2px);}
+.btn.primary{background:var(--brass); color:var(--ink); border-color:var(--brass);}
+.btn.primary:hover{background:var(--paper); border-color:var(--paper);}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+header.site-nav{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  backdrop-filter: blur(10px);
+  background:rgba(14,17,22,0.72);
+  border-bottom:1px solid var(--hairline);
+}
+.nav-inner{
+  max-width:var(--wrap);
+  margin:0 auto;
+  padding:20px var(--gutter);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.nav-mark{
+  font-family:var(--mono);
+  font-size:13px;
+  letter-spacing:0.08em;
+  color:var(--paper);
+}
+.nav-mark span{color:var(--brass);}
+.nav-links{
+  display:flex;
+  gap:28px;
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color:var(--paper-dim);
+}
+.nav-links a{transition:color .2s ease;}
+.nav-links a:hover{color:var(--brass);}
+@media (max-width:700px){ .nav-links{display:none;} }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+#hero{
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  position:relative;
+  border-top:none;
+  padding-top:120px;
+}
+#hero-canvas{
+  position:absolute; inset:0;
+  z-index:0;
+  opacity:0.85;
+}
+.hero-inner{position:relative; z-index:2;}
+.hero-kicker{
+  font-family:var(--mono);
+  font-size:13px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--brass);
+  margin-bottom:22px;
+}
+.hero-name{
+  font-family:var(--display);
+  font-size:clamp(44px, 8vw, 96px);
+  font-weight:400;
+  line-height:0.98;
+  color:var(--paper);
+  margin-bottom:6px;
+}
+.hero-roles{
+  font-family:var(--mono);
+  font-size:clamp(13px,1.6vw,16px);
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color:var(--paper-dim);
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin:22px 0 30px;
+}
+.hero-roles span:not(:last-child)::after{content:'/'; margin-left:14px; color:var(--brass-dim);}
+.hero-statement{
+  font-family:var(--display);
+  font-style:italic;
+  font-weight:400;
+  font-size:clamp(20px,2.6vw,30px);
+  color:var(--paper);
+  max-width:20ch;
+  margin-bottom:44px;
+  line-height:1.35;
+}
+.hero-ctas{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:60px;}
+.scroll-hint{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--slate);
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.scroll-hint .line{
+  width:1px; height:34px;
+  background:linear-gradient(var(--brass), transparent);
+  animation:scrollpulse 2s ease-in-out infinite;
+}
+@keyframes scrollpulse{
+  0%,100%{opacity:0.3;}
+  50%{opacity:1;}
+}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about-grid{display:grid; grid-template-columns: 1.3fr 0.7fr; gap:56px;}
+@media (max-width:860px){.about-grid{grid-template-columns:1fr;}}
+.about-copy p{color:var(--paper-dim); font-size:17px; margin-bottom:22px; max-width:58ch;}
+.about-copy strong{color:var(--paper); font-weight:500;}
+.about-facts{
+  border-left:1px solid var(--hairline-strong);
+  padding-left:28px;
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+.fact{}
+.fact .k{font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--slate); margin-bottom:6px;}
+.fact .v{font-family:var(--display); font-size:19px; color:var(--paper);}
+
+/* ============================================================
+   CAPABILITIES
+   ============================================================ */
+.cap-grid{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:1px;
+  background:var(--hairline);
+  border:1px solid var(--hairline);
+}
+@media (max-width:700px){.cap-grid{grid-template-columns:1fr;}}
+.cap-card{
+  background:var(--panel);
+  padding:36px;
+  position:relative;
+  overflow:hidden;
+  cursor:default;
+  transition:background .3s ease;
+}
+.cap-card:hover{background:var(--panel-2);}
+.cap-card .num{font-family:var(--mono); font-size:12px; color:var(--brass); margin-bottom:16px; display:block;}
+.cap-card h3{font-size:22px; color:var(--paper); margin-bottom:14px; font-weight:500;}
+.cap-skills{
+  display:flex; flex-wrap:wrap; gap:8px;
+  max-height:0;
+  opacity:0;
+  overflow:hidden;
+  transition:max-height .45s ease, opacity .4s ease, margin-top .4s ease;
+}
+.cap-card:hover .cap-skills, .cap-card:focus-within .cap-skills{
+  max-height:220px; opacity:1; margin-top:6px;
+}
+.cap-skills .tag{font-size:10.5px; padding:4px 9px;}
+.cap-hint{font-family:var(--mono); font-size:11px; color:var(--slate); letter-spacing:0.05em;}
+
+/* ============================================================
+   BA PROCESS (blueprint pipeline)
+   ============================================================ */
+.pipeline{
+  position:relative;
+  padding-left:36px;
+}
+.pipeline::before{
+  content:'';
+  position:absolute; left:5px; top:8px; bottom:8px;
+  width:1px;
+  background:var(--hairline-strong);
+}
+.stage{
+  position:relative;
+  padding:0 0 44px 34px;
+  opacity:0.35;
+  transform:translateX(-6px);
+  transition:opacity .5s ease, transform .5s ease;
+}
+.stage.in-view{opacity:1; transform:translateX(0);}
+.stage:last-child{padding-bottom:0;}
+.stage::before{
+  content:'';
+  position:absolute; left:-31px; top:4px;
+  width:11px; height:11px;
+  border-radius:50%;
+  background:var(--ink);
+  border:2px solid var(--brass-dim);
+  transition:border-color .4s ease, background .4s ease;
+}
+.stage.in-view::before{border-color:var(--brass); background:var(--brass);}
+.stage .stagenum{font-family:var(--mono); font-size:11px; color:var(--slate); letter-spacing:0.08em;}
+.stage h4{font-family:var(--display); font-size:21px; font-weight:500; color:var(--paper); margin:6px 0 8px;}
+.stage p{color:var(--paper-dim); font-size:15px; max-width:52ch;}
+
+/* ============================================================
+   PROJECT
+   ============================================================ */
+.project-card{
+  border:1px solid var(--hairline-strong);
+  background:var(--panel);
+  padding:clamp(28px,4vw,56px);
+}
+.project-head{display:flex; justify-content:space-between; align-items:flex-start; gap:24px; flex-wrap:wrap; margin-bottom:32px; border-bottom:1px solid var(--hairline); padding-bottom:28px;}
+.project-head h3{font-size:clamp(24px,3vw,34px); color:var(--paper); font-weight:500; max-width:22ch;}
+.project-meta{font-family:var(--mono); font-size:12px; color:var(--slate); text-align:right; line-height:1.8;}
+.project-meta b{color:var(--brass); font-weight:500;}
+.project-cols{display:grid; grid-template-columns:repeat(2,1fr); gap:36px;}
+@media (max-width:700px){.project-cols{grid-template-columns:1fr;}}
+.pcol .k{font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--brass); margin-bottom:10px;}
+.pcol p, .pcol li{color:var(--paper-dim); font-size:15px; margin-bottom:6px;}
+.pcol ul{padding-left:18px;}
+.pcol{margin-bottom:8px;}
+.outcome-box{
+  margin-top:32px; padding-top:28px; border-top:1px solid var(--hairline);
+}
+
+/* ============================================================
+   PRODUCT SECTION
+   ============================================================ */
+.product-split{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--hairline); border:1px solid var(--hairline);}
+@media (max-width:700px){.product-split{grid-template-columns:1fr;}}
+.product-col{background:var(--panel); padding:32px;}
+.product-col h4{font-family:var(--mono); font-size:12px; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:18px;}
+.product-col.exp h4{color:var(--brass);}
+.product-col.knw h4{color:var(--slate);}
+.product-col ul{list-style:none;}
+.product-col li{
+  padding:10px 0; border-top:1px solid var(--hairline);
+  font-size:15px; color:var(--paper-dim);
+}
+.product-col li:first-of-type{border-top:none;}
+
+/* ============================================================
+   CERTS / TOOLS
+   ============================================================ */
+.cert-card{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:24px 0; border-top:1px solid var(--hairline); gap:20px; flex-wrap:wrap;
+}
+.cert-card:first-child{border-top:none;}
+.cert-name{font-family:var(--display); font-size:20px; color:var(--paper);}
+.cert-meta{font-family:var(--mono); font-size:12px; color:var(--slate);}
+
+.tools-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(210px,1fr)); gap:28px; margin-top:12px;}
+.tool-group .k{font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--brass); margin-bottom:14px;}
+.tool-group ul{list-style:none;}
+.tool-group li{color:var(--paper-dim); font-size:14.5px; padding:6px 0; border-top:1px solid var(--hairline);}
+.tool-group li:first-child{border-top:none;}
+
+/* ============================================================
+   JOURNEY
+   ============================================================ */
+.journey{position:relative; padding-left:0;}
+.jrow{
+  display:grid; grid-template-columns:140px 1fr; gap:24px;
+  padding:26px 0; border-top:1px solid var(--hairline);
+}
+.jrow:first-child{border-top:none;}
+.jrow .date{font-family:var(--mono); font-size:13px; color:var(--brass);}
+.jrow h4{font-family:var(--display); font-size:19px; color:var(--paper); font-weight:500; margin-bottom:6px;}
+.jrow p{color:var(--paper-dim); font-size:14.5px;}
+@media (max-width:600px){.jrow{grid-template-columns:1fr;}}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+#contact{border-bottom:none;}
+.contact-inner{text-align:left;}
+.contact-huge{
+  font-family:var(--display);
+  font-size:clamp(32px,6vw,68px);
+  font-weight:400;
+  line-height:1.05;
+  max-width:16ch;
+  margin-bottom:40px;
+}
+.contact-huge em{color:var(--brass); font-style:italic;}
+.contact-row{display:flex; gap:16px; flex-wrap:wrap; align-items:center; margin-bottom:52px;}
+.copy-feedback{font-family:var(--mono); font-size:11px; color:var(--brass); opacity:0; transition:opacity .3s ease;}
+.copy-feedback.show{opacity:1;}
+.contact-links{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--hairline);}
+.contact-links a, .contact-links button{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:20px 0; border-bottom:1px solid var(--hairline);
+  font-family:var(--mono); font-size:14px; letter-spacing:0.02em;
+  color:var(--paper); background:none; border-left:none; border-right:none; border-top:none;
+  width:100%; text-align:left; cursor:pointer;
+  transition:padding-left .25s ease, color .25s ease;
+}
+.contact-links a:hover, .contact-links button:hover{padding-left:12px; color:var(--brass);}
+.contact-links .arrow{color:var(--slate); font-family:var(--mono);}
+
+footer{
+  padding:32px var(--gutter);
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--slate);
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+  max-width:var(--wrap); margin:0 auto;
+}
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <div class="nav-mark">M.SHALAN <span>/ BA·PO</span></div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#approach">Approach</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="wrap hero-inner">
+    <div class="hero-kicker">Exhibit A — Profile</div>
+    <h1 class="hero-name">Mohamed Amer<br>Shalan</h1>
+    <div class="hero-roles">
+      <span>Business Analyst</span>
+      <span>Aspiring Product Owner</span>
+      <span>Digital Transformation</span>
+    </div>
+    <p class="hero-statement">"Translating ambiguous business problems into requirements a team can build with confidence."</p>
+    <div class="hero-ctas">
+      <a href="#work" class="btn primary">View My Work</a>
+      <a href="#contact" class="btn">Let's Connect</a>
+    </div>
+    <div class="scroll-hint"><span class="line"></span>Scroll</div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<section id="about" class="section">
+  <div class="wrap rail">
+    <div class="index-num">01 / ABOUT</div>
+    <div>
+      <div class="eyebrow">Who I Am</div>
+      <h2 class="h-section">Structure, before software.</h2>
+      <div class="about-grid">
+        <div class="about-copy">
+          <p>I work at the point where a business problem is still messy — before anyone has agreed what "done" looks like. My job is to sit with that mess: ask the questions no one has asked yet, find the gap between what a process document says and what actually happens, and turn it into something a development team can build against with confidence.</p>
+          <p>Most of my hands-on experience comes from a <strong>national-scale government digital transformation program</strong> — a visa platform used across a country's ministry and its embassies abroad. There, "requirements" weren't abstract: a missed exception case meant a real person's application got stuck with no defined next step. That kind of stakes taught me to write requirements like someone will actually depend on them, because someone will.</p>
+          <p>I'm a <strong>Business Analyst by practice</strong> and <strong>building toward Product Ownership</strong> by direction — I care as much about why a requirement exists as about documenting it correctly, and I'm drawn to the parts of the job that sit closer to the product decision, not just the specification.</p>
+        </div>
+        <div class="about-facts">
+          <div class="fact"><div class="k">Based In</div><div class="v">Alexandria, Egypt</div></div>
+          <div class="fact"><div class="k">Focus</div><div class="v">Requirements &amp; Product Thinking</div></div>
+          <div class="fact"><div class="k">Foundation</div><div class="v">Business Information Systems</div></div>
+          <div class="fact"><div class="k">Languages</div><div class="v">Arabic (Native), English (Professional)</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CAPABILITIES
+     ============================================================ -->
+<section id="capabilities" class="section">
+  <div class="wrap rail">
+    <div class="index-num">02 / CAPABILITIES</div>
+    <div>
+      <div class="eyebrow">What I Bring</div>
+      <h2 class="h-section">Four lenses, one problem.</h2>
+      <p class="lede" style="margin-bottom:40px;">Hover or focus each area to see the specific skills and tools behind it.</p>
+
+      <div class="cap-grid">
+        <div class="cap-card" tabindex="0">
+          <span class="num">01</span>
+          <h3>Business Analysis</h3>
+          <p class="cap-hint">Requirements → clarity</p>
+          <div class="cap-skills">
+            <span class="tag">Requirements Elicitation</span>
+            <span class="tag">SRS Review &amp; Validation</span>
+            <span class="tag">Gap Analysis</span>
+            <span class="tag">Root-Cause Analysis</span>
+            <span class="tag">Use Case Analysis</span>
+            <span class="tag">Stakeholder Management</span>
+          </div>
+        </div>
+        <div class="cap-card" tabindex="0">
+          <span class="num">02</span>
+          <h3>Product &amp; Agile</h3>
+          <p class="cap-hint">Requirements → shippable</p>
+          <div class="cap-skills">
+            <span class="tag">User Stories</span>
+            <span class="tag">Acceptance Criteria</span>
+            <span class="tag">Feature-Level Requirements</span>
+            <span class="tag">Product Lifecycle Awareness</span>
+            <span class="tag">Agile / Scrum</span>
+            <span class="tag">Sprint Participation</span>
+          </div>
+        </div>
+        <div class="cap-card" tabindex="0">
+          <span class="num">03</span>
+          <h3>Process &amp; Modeling</h3>
+          <p class="cap-hint">Chaos → diagram</p>
+          <div class="cap-skills">
+            <span class="tag">BPMN Process Mapping</span>
+            <span class="tag">Workflow Diagramming</span>
+            <span class="tag">Dependency Mapping</span>
+            <span class="tag">As-Is / To-Be Modeling</span>
+          </div>
+        </div>
+        <div class="cap-card" tabindex="0">
+          <span class="num">04</span>
+          <h3>Tools &amp; Data</h3>
+          <p class="cap-hint">Evidence → decisions</p>
+          <div class="cap-skills">
+            <span class="tag">SQL</span>
+            <span class="tag">Excel (Advanced)</span>
+            <span class="tag">Draw.io</span>
+            <span class="tag">ARIS Express</span>
+            <span class="tag">Jira</span>
+            <span class="tag">Figma (reference)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     APPROACH — BA PROCESS PIPELINE
+     ============================================================ -->
+<section id="approach" class="section">
+  <div class="wrap rail">
+    <div class="index-num">03 / APPROACH</div>
+    <div>
+      <div class="eyebrow">How I Work</div>
+      <h2 class="h-section">From an unclear ask to a delivered answer.</h2>
+      <p class="lede" style="margin-bottom:48px;">The path a requirement actually travels — stage by stage, on the work I've done.</p>
+
+      <div class="pipeline" id="pipeline">
+        <div class="stage">
+          <div class="stagenum">01</div>
+          <h4>Business Problem</h4>
+          <p>Start with the real-world gap — not the assumed solution. On the visa platform, this meant asking what happens when a standard process breaks: a failed biometric scan, a denied-party match, a request stuck mid-flow.</p>
+        </div>
+        <div class="stage">
+          <div class="stagenum">02</div>
+          <h4>Stakeholders</h4>
+          <p>Work with a distributed BA team and cross-functional stakeholders to understand who is affected — ministry staff, embassy personnel, and the applicant on the other end of a notification.</p>
+        </div>
+        <div class="stage">
+          <div class="stagenum">03</div>
+          <h4>Requirements Review</h4>
+          <p>Review and validate Software Requirements Specifications each sprint — reading past what's written to find what's missing, undocumented, or assumed.</p>
+        </div>
+        <div class="stage">
+          <div class="stagenum">04</div>
+          <h4>Gap Analysis</h4>
+          <p>Cross-reference documentation against related modules and teams to surface issues before they reach development — including a case where a dependency pointed to a document that didn't exist yet.</p>
+        </div>
+        <div class="stage">
+          <div class="stagenum">05</div>
+          <h4>Process Modeling</h4>
+          <p>Map dependencies and workflows visually (BPMN, Draw.io, ARIS Express) so handoff sequencing between teams is unambiguous, not assumed.</p>
+        </div>
+        <div class="stage">
+          <div class="stagenum">06</div>
+          <h4>User Stories &amp; Acceptance Criteria</h4>
+          <p>Translate the business rule into a precise, testable requirement engineering can actually build — done for seven exception-handling use cases, including a biometric-enrollment-failure scenario.</p>
+        </div>
+        <div class="stage">
+          <div class="stagenum">07</div>
+          <h4>Validation</h4>
+          <p>Check delivered functionality against the acceptance criteria that were defined up front — closing the loop rather than assuming intent survived the build.</p>
+        </div>
+        <div class="stage">
+          <div class="stagenum">08</div>
+          <h4>Delivery Handoff</h4>
+          <p>Work directly with developers, QA, and UX inside two-week Agile sprints so the requirement stays traceable from specification to what actually ships.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PRODUCT THINKING
+     ============================================================ -->
+<section id="product" class="section">
+  <div class="wrap rail">
+    <div class="index-num">04 / PRODUCT</div>
+    <div>
+      <div class="eyebrow">Product Thinking</div>
+      <h2 class="h-section">Where analysis ends and product begins.</h2>
+      <p class="lede" style="margin-bottom:40px;">A Business Analyst documents what's needed. I'm drawn to the layer above it — deciding what's needed, and why. Here's what's professional experience versus what I'm actively building.</p>
+
+      <div class="product-split">
+        <div class="product-col exp">
+          <h4>Hands-On Experience</h4>
+          <ul>
+            <li>Authoring user stories &amp; acceptance criteria</li>
+            <li>Feature-level requirement definition</li>
+            <li>Validating delivered functionality against defined criteria</li>
+            <li>Working inside live Agile/Scrum sprint cycles</li>
+          </ul>
+        </div>
+        <div class="product-col knw">
+          <h4>Building Toward</h4>
+          <ul>
+            <li>Product backlog prioritization</li>
+            <li>Roadmap &amp; MVP thinking</li>
+            <li>Product discovery methods</li>
+            <li>Full backlog ownership</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WORK / PROJECT CASE STUDY
+     ============================================================ -->
+<section id="work" class="section">
+  <div class="wrap rail">
+    <div class="index-num">05 / WORK</div>
+    <div>
+      <div class="eyebrow">Case Study</div>
+      <h2 class="h-section">The project behind the profile.</h2>
+
+      <div class="project-card">
+        <div class="project-head">
+          <h3>National Visa Platform — Tourism Visa Module</h3>
+          <div class="project-meta">
+            United Delta for Information Technology<br>
+            <b>Ministry of Foreign Affairs, Saudi Arabia</b><br>
+            Apr 2026 – Jul 2026 · Remote
+          </div>
+        </div>
+
+        <div class="project-cols">
+          <div class="pcol">
+            <div class="k">Business Problem</div>
+            <p>A national government platform needed to process tourism visa requests digitally, including complex exception cases — failed biometric enrollment, denied-party screening — that had no defined handling logic.</p>
+          </div>
+          <div class="pcol">
+            <div class="k">My Role</div>
+            <p>Business Analyst on the Tourism Visa module, inside a 5-person BA team within a larger multi-team delivery program.</p>
+          </div>
+          <div class="pcol">
+            <div class="k">Business Analysis Activities</div>
+            <ul>
+              <li>SRS review &amp; validation</li>
+              <li>Gap analysis across modules</li>
+              <li>Cross-team dependency mapping</li>
+              <li>Structured documentation</li>
+            </ul>
+          </div>
+          <div class="pcol">
+            <div class="k">Product Activities</div>
+            <ul>
+              <li>User stories &amp; acceptance criteria authoring</li>
+              <li>Feature-level requirement definition</li>
+              <li>Delivered-functionality validation</li>
+            </ul>
+          </div>
+          <div class="pcol">
+            <div class="k">Tools &amp; Methods</div>
+            <p>SRS · BPMN (Draw.io, ARIS Express) · SQL · Jira · Agile/Scrum (2-week sprints)</p>
+          </div>
+          <div class="pcol">
+            <div class="k">Scope</div>
+            <p>Exception-handling, denied-party screening, post-issuance processing, and request-processing use cases.</p>
+          </div>
+        </div>
+
+        <div class="outcome-box">
+          <div class="pcol">
+            <div class="k">Outcome</div>
+            <p>Contributed to fewer requirement-related errors reaching development, and clearer cross-team handoff sequencing across a multi-vendor delivery environment.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CERTIFICATIONS
+     ============================================================ -->
+<section id="certs" class="section">
+  <div class="wrap rail">
+    <div class="index-num">06 / CREDENTIALS</div>
+    <div>
+      <div class="eyebrow">Certifications</div>
+      <h2 class="h-section">Verified learning.</h2>
+      <div class="cert-list">
+        <div class="cert-card">
+          <div>
+            <div class="cert-name">Introduction to CBAP</div>
+            <div class="cert-meta">Business Analysis fundamentals — IIBA framework</div>
+          </div>
+          <div class="cert-meta">Simplilearn · Aug 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TOOLS
+     ============================================================ -->
+<section id="tools" class="section">
+  <div class="wrap rail">
+    <div class="index-num">07 / TOOLKIT</div>
+    <div>
+      <div class="eyebrow">Toolkit</div>
+      <h2 class="h-section">What I actually work in.</h2>
+      <div class="tools-grid">
+        <div class="tool-group">
+          <div class="k">Analysis &amp; Documentation</div>
+          <ul><li>Software Requirements Specs (SRS)</li><li>BPMN</li><li>Draw.io</li><li>ARIS Express</li></ul>
+        </div>
+        <div class="tool-group">
+          <div class="k">Data</div>
+          <ul><li>SQL</li><li>Microsoft Excel (Advanced)</li></ul>
+        </div>
+        <div class="tool-group">
+          <div class="k">Agile Delivery</div>
+          <ul><li>Jira</li><li>Sprint Ceremonies</li></ul>
+        </div>
+        <div class="tool-group">
+          <div class="k">Design Reference</div>
+          <ul><li>Figma (screen reference)</li></ul>
+        </div>
+        <div class="tool-group">
+          <div class="k">Office</div>
+          <ul><li>Microsoft Office Suite</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     JOURNEY
+     ============================================================ -->
+<section id="journey" class="section">
+  <div class="wrap rail">
+    <div class="index-num">08 / JOURNEY</div>
+    <div>
+      <div class="eyebrow">Timeline</div>
+      <h2 class="h-section">Where this is headed.</h2>
+      <div class="journey">
+        <div class="jrow">
+          <div class="date">2027 (Expected)</div>
+          <div>
+            <h4>Bachelor of Business Information Systems</h4>
+            <p>Abou Qir Higher Institutes, Alexandria, Egypt — Information Systems Analysis &amp; Design, Database Management (SQL), Business Process Management, Systems Thinking, Project Management.</p>
+          </div>
+        </div>
+        <div class="jrow">
+          <div class="date">Apr – Jul 2026</div>
+          <div>
+            <h4>Business Process Management Analyst — Intern</h4>
+            <p>United Delta for Information Technology. Business Analyst on the National Visa Platform (Saudi MOFA), Tourism Visa module.</p>
+          </div>
+        </div>
+        <div class="jrow">
+          <div class="date">Aug 2026</div>
+          <div>
+            <h4>Introduction to CBAP</h4>
+            <p>Simplilearn — foundational Business Analysis training aligned to the IIBA framework.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT
+     ============================================================ -->
+<section id="contact" class="section">
+  <div class="wrap rail">
+    <div class="index-num">09 / CONTACT</div>
+    <div class="contact-inner">
+      <div class="eyebrow">Get In Touch</div>
+      <h2 class="contact-huge">Let's build something <em>meaningful</em>.</h2>
+
+      <div class="contact-row">
+        <a href="/Mohamed_Amer_Shalan_CV.pdf" download class="btn primary">Download CV</a>
+        <span class="copy-feedback" id="copyFeedback">Copied to clipboard</span>
+      </div>
+
+      <div class="contact-links">
+        <button id="copyEmailBtn" type="button">
+          <span>mohamed.amer.shalan@outlook.com</span>
+          <span class="arrow">Copy →</span>
+        </button>
+        <a href="https://www.linkedin.com/in/mohamedamer-shalan-2a48b1385" target="_blank" rel="noopener">
+          <span>LinkedIn</span>
+          <span class="arrow">Open ↗</span>
+        </a>
+        <a href="tel:+201068323073">
+          <span>+20 106 832 3073</span>
+          <span class="arrow">Call →</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>© Mohamed Amer Shalan</div>
+  <div>Alexandria, Egypt</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* ============================================================
+   COPY EMAIL
+   ============================================================ */
+document.getElementById('copyEmailBtn').addEventListener('click', function(){
+  navigator.clipboard.writeText('mohamed.amer.shalan@outlook.com').then(function(){
+    var fb = document.getElementById('copyFeedback');
+    fb.classList.add('show');
+    setTimeout(function(){ fb.classList.remove('show'); }, 1800);
+  });
+});
+
+/* ============================================================
+   STAGE REVEAL (BA pipeline) — IntersectionObserver, no deps
+   ============================================================ */
+(function(){
+  var stages = document.querySelectorAll('.stage');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in-view'); }
+    });
+  }, {threshold:0.4});
+  stages.forEach(function(s){ io.observe(s); });
+})();
+
+/* ============================================================
+   3D HERO SCENE — scattered nodes assembling into a lattice
+   Respects prefers-reduced-motion and small screens (lighter mode)
+   ============================================================ */
+(function(){
+  var canvas = document.getElementById('hero-canvas');
+  if(!canvas || typeof THREE === 'undefined') return;
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isSmall = window.innerWidth < 760;
+  var COUNT = isSmall ? 90 : 240;
+
+  var renderer = new THREE.WebGLRenderer({canvas:canvas, alpha:true, antialias:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, isSmall ? 1.5 : 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(50, window.innerWidth/window.innerHeight, 0.1, 100);
+  camera.position.set(0,0,13);
+
+  // --- Points: two target states — scattered (chaos) and lattice (structure)
+  var scattered = [];
+  var lattice = [];
+  var gridSize = Math.ceil(Math.pow(COUNT, 1/3));
+  var spacing = 2.6;
+  var li = 0;
+  for(var x=0; x<gridSize; x++){
+    for(var y=0; y<gridSize; y++){
+      for(var z=0; z<gridSize; z++){
+        if(li >= COUNT) break;
+        lattice.push(new THREE.Vector3(
+          (x - gridSize/2) * spacing,
+          (y - gridSize/2) * spacing,
+          (z - gridSize/2) * spacing - 4
+        ));
+        li++;
+      }
+    }
+  }
+  for(var i=0;i<COUNT;i++){
+    scattered.push(new THREE.Vector3(
+      (Math.random()-0.5) * 26,
+      (Math.random()-0.5) * 16,
+      (Math.random()-0.5) * 14 - 4
+    ));
+  }
+
+  var positions = new Float32Array(COUNT * 3);
+  for(var p=0;p<COUNT;p++){
+    positions[p*3]   = scattered[p].x;
+    positions[p*3+1] = scattered[p].y;
+    positions[p*3+2] = scattered[p].z;
+  }
+  var geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+  var material = new THREE.PointsMaterial({
+    color: 0xC6A15B,
+    size: isSmall ? 0.09 : 0.075,
+    transparent:true,
+    opacity:0.85,
+    sizeAttenuation:true
+  });
+  var points = new THREE.Points(geometry, material);
+  scene.add(points);
+
+  // faint connecting lines between nearby lattice points (structure feel)
+  var lineGeom = new THREE.BufferGeometry();
+  var linePositions = [];
+  for(var a=0; a<lattice.length; a++){
+    for(var b=a+1; b<lattice.length; b++){
+      if(lattice[a].distanceTo(lattice[b]) < spacing + 0.1){
+        linePositions.push(lattice[a].x, lattice[a].y, lattice[a].z);
+        linePositions.push(lattice[b].x, lattice[b].y, lattice[b].z);
+      }
+    }
+  }
+  lineGeom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(linePositions), 3));
+  var lineMat = new THREE.LineBasicMaterial({color:0x7C8494, transparent:true, opacity:0});
+  var lines = new THREE.LineSegments(lineGeom, lineMat);
+  scene.add(lines);
+
+  // --- scroll progress (0 at hero top, 1 after ~1 viewport of scroll)
+  var progress = 0;
+  function updateProgress(){
+    var vh = window.innerHeight;
+    progress = Math.min(Math.max(window.scrollY / (vh * 0.9), 0), 1);
+  }
+  window.addEventListener('scroll', updateProgress, {passive:true});
+  updateProgress();
+
+  // --- mouse parallax
+  var mouseX = 0, mouseY = 0;
+  window.addEventListener('mousemove', function(e){
+    mouseX = (e.clientX / window.innerWidth - 0.5);
+    mouseY = (e.clientY / window.innerHeight - 0.5);
+  });
+
+  function easeInOutCubic(t){ return t < 0.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2; }
+
+  var clock = new THREE.Clock();
+
+  function animate(){
+    requestAnimationFrame(animate);
+    var t = easeInOutCubic(progress);
+    var posAttr = geometry.attributes.position;
+    for(var i=0;i<COUNT;i++){
+      var sx = scattered[i].x, sy = scattered[i].y, sz = scattered[i].z;
+      var lx = lattice[i] ? lattice[i].x : sx;
+      var ly = lattice[i] ? lattice[i].y : sy;
+      var lz = lattice[i] ? lattice[i].z : sz;
+      posAttr.array[i*3]   = sx + (lx - sx) * t;
+      posAttr.array[i*3+1] = sy + (ly - sy) * t;
+      posAttr.array[i*3+2] = sz + (lz - sz) * t;
+    }
+    posAttr.needsUpdate = true;
+    lineMat.opacity = t * 0.18;
+
+    var elapsed = clock.getElapsedTime();
+    var idleRotate = reduceMotion ? 0 : elapsed * 0.02;
+    scene.rotation.y = idleRotate + mouseX * 0.3 + t * 0.15;
+    scene.rotation.x = mouseY * 0.15;
+
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  window.addEventListener('resize', function(){
+    camera.aspect = window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+})();
+</script>
+</body>
+</html>
